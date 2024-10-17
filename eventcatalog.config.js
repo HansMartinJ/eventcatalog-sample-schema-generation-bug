@@ -1,3 +1,7 @@
+import path from 'path';
+import url from 'url';
+
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 /** @type {import('@eventcatalog/core/bin/eventcatalog.config').Config} */
 export default {
   title: 'EventCatalog',
@@ -23,5 +27,20 @@ export default {
     }
   },
   // required random generated id used by eventcatalog
-  cId: '16d1dbea-8bf8-4432-98f9-03138c65fec0'
+  cId: '16d1dbea-8bf8-4432-98f9-03138c65fec0',
+  generators: [
+    // Add single AsyncAPI file to a domain
+    [
+      '@eventcatalog/generator-asyncapi',
+      {
+        services: [
+          { path: path.join(__dirname, 'asyncapi-files', 'service.yaml'), id: "service"}
+        ],
+        domain: { id: 'orders', name: 'Orders', version: '0.0.1' },
+
+        // Run in debug mode, for extra output, if your AsyncAPI fails to parse, it will tell you why
+        debug: true
+      },
+    ],
+  ]
 }
