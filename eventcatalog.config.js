@@ -37,7 +37,8 @@ export default {
           { path: path.join(__dirname, 'asyncapi-files', 'service.yaml'), id: "service"}
         ],
         domain: { id: 'orders', name: 'Orders', version: '0.0.1' },
-
+        saveParsedSpecFile: true,
+        parseSchemas: false,
         // Run in debug mode, for extra output, if your AsyncAPI fails to parse, it will tell you why
         debug: true
       },
