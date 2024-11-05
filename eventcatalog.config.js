@@ -4,6 +4,10 @@ import url from 'url';
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 /** @type {import('@eventcatalog/core/bin/eventcatalog.config').Config} */
 export default {
+  asyncAPI: {
+    renderParsedSchemas: false // default is true
+  },
+  // mdxOptimize
   title: 'EventCatalog',
   tagline: 'Discover, Explore and Document your Event Driven Architectures',
   organizationName: 'sample',
@@ -34,7 +38,7 @@ export default {
       '@eventcatalog/generator-asyncapi',
       {
         services: [
-          { path: path.join(__dirname, 'asyncapi-files', 'service.yaml'), id: "service"}
+          { path: path.join(__dirname, 'asyncapi-files', 'service.yaml'), id: "service" }
         ],
         domain: { id: 'orders', name: 'Orders', version: '0.0.1' },
         saveParsedSpecFile: true,
